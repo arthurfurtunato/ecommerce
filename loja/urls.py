@@ -19,6 +19,9 @@ from django.urls import path, include
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('produto.urls')),
     path('admin/', admin.site.urls),
     path('__debug__/', include('debug_toolbar.urls')),
+    path('perfil/', include('perfil.urls')),
+    path('pedido/', include('pedido.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

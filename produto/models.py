@@ -15,7 +15,7 @@ class Produto(models.Model):
     imagem = models.ImageField(upload_to='produto_imagens/%Y/%m/', blank=True, null=True)
     slug = models.SlugField(unique=True, blank=True, null=True)
     preco_marketing = models.FloatField(verbose_name='Preço')
-    preco_marketing_promocional = models.FloatField(default=0, verbose_name='Preço Promocional')
+    preco_marketing_promocional = models.FloatField(default=0, verbose_name='Preço Promocional', blank=True, null=True)
     tipo = models.CharField(default='V', max_length=1, choices=(('V', 'Variável'), ('S', 'Simples')))
 
     def get_preco_formatado(self):

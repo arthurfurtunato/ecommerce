@@ -10,6 +10,7 @@ class ListaProduto(ListView):
     model = Produto
     template_name = 'produto/lista.html'
     context_object_name = 'produtos'
+    paginate_by = 3
 
 class DetalheProduto(View):
     def get(self, *args, **kwargs):

@@ -1,5 +1,6 @@
-from re import template
-from django.shortcuts import render
+from email import message
+from django.urls import reverse
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views import View
@@ -21,7 +22,20 @@ class DetalheProduto(DetailView):
 
 class AdicionarAoCarrinho(View):
     def get(self, *args, **kwargs):
-        return HttpResponse('Adicionar carrinho')
+        http_referer = self.request.META.get(
+            'HTTP_REFERER',
+            reverse('produto:lista')
+            )
+        variacao_id = self.request.GET.get('vid')
+
+        if not variacao_id:
+            message.error(
+                self.request,
+                'Produto não existe'
+            )
+            return redirect(http_referer)
+
+        return HttpResponse('Adicionar Carrinho')
 
 class RemoverDoCarrinho(View):
     def get(self, *args, **kwargs):

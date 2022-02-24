@@ -32,7 +32,7 @@ class BasePerfil(View):
 
 class Criar(BasePerfil):
     def post(self, *args, **kwargs):
-        self.renderizar
+        return self.renderizar
 
 class Atualizar(View):
     def get(self, *args, **kwargs):
